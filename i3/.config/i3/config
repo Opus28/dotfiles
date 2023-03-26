@@ -73,10 +73,10 @@ bindsym $mod+b exec firefox
 focus_follows_mouse no
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -89,10 +89,10 @@ bindsym $mod+Tab focus next
 bindsym $mod+Shift+Tab focus prev
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -287,7 +287,7 @@ exec --no-startup-id xautolock -time 10 -locker blurlock
 # exec_always --no-startup-id ff-theme-util
 # exec_always --no-startup-id fix_xcursor
 
-exec_always --no-startup-id pkill picom; xrdb -merge ~/.Xresources; wal -R; picom -b
+exec_always --no-startup-id xrdb -merge ~/.Xresources; wal -R; picom -b
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -332,16 +332,15 @@ bar {
 
 	bindsym button4 nop
 	bindsym button5 nop
-    #   font xft:URWGothic-Book 11
 	strip_workspace_numbers yes
 
     colors {
-    #    background #222D31
-    #    statusline #F9FAF9
-    #    separator  #454947
+        background #000000
+        statusline #ffffff
+        separator  $c2
 
     #                      border  backgr. text
-    #    focused_workspace  #F9FAF9 #16a085 #292F34
+        focused_workspace  $c2     #000000 #ffffff
     #    active_workspace   #595B5B #353836 #FDF6E3
     #    inactive_workspace #595B5B #222D31 #EEE8D5
     #    binding_mode       #16a085 #2C2C2C #F9FAF9
@@ -352,15 +351,24 @@ bar {
 # hide/unhide i3status bar
 bindsym $mod+m bar mode toggle
 
-# Theme colors
-# # class                   border  backgr. text    indic.   child_border
-#   client.focused          #556064 #556064 #80FFF9 #FDF6E3
-#   client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-#   client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-#   client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-#   client.placeholder      #000000 #0c0c0c #ffffff #000000 
+set_from_resource $c0 color0 
+set_from_resource $c1 color1 
+set_from_resource $c2 color2
+set_from_resource $c3 color3
+set_from_resource $c4 color4
+set_from_resource $c5 color5
+set_from_resource $c6 color6
+set_from_resource $c7 color7
 
-#   client.background       #2B2C2B
+# Theme colors
+# class                   border    backgr.   text      indic.
+  client.focused          $c2       $c2       #ffffff   $c5 
+  client.focused_inactive #000000   #000000   #ffffff   #454948 
+  client.unfocused        #000000   #000000   #ffffff   #454948 
+# client.urgent           #CB4B16   #FDF6E3   #ffffff   #268BD2 
+# client.placeholder      #000000   #0c0c0c   #ffffff   #000000  
+
+  client.background       #000000
 
 #############################
 ### settings for i3-gaps: ###

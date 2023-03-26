@@ -1,0 +1,32 @@
+# Imports
+source "~/.config/lf/mappings"
+
+# Settings
+set nohidden
+set preview
+set icons true
+set nodrawbox 
+
+cmd open ${{
+    case $(file --mime-type "$f" -bL) in
+        text/*|application/json) $EDITOR "$f";;
+        *) xdg-open "$f" ;;
+    esac
+}}
+
+cmd mkdir ${{
+    printf "Directory Name: "
+    read ans
+    mkdir $ans
+}}
+
+cmd wal ${{
+    wal -i "$f"
+}}
+
+cmd rename %{{
+    printf " New name: " &&
+    read name &&
+    mv "$f" $name &&
+    echo " $f renamed to $name"
+}}
