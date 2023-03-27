@@ -14,7 +14,7 @@ cmd open ${{
     esac
 }}
 
-cmd mkdir ${{
+cmd mkdir %{{
     printf "Directory Name: "
     read ans
     mkdir $ans
@@ -22,11 +22,22 @@ cmd mkdir ${{
 
 cmd wal ${{
     wal -i "$f"
+    feh --bg-fill "$f"
+    pywalfox update
 }}
 
 cmd rename %{{
-    printf " New name: " &&
-    read name &&
-    mv "$f" $name &&
+    printf " New name: "
+    read name
+    mv "$f" $name
     echo " $f renamed to $name"
+}}
+
+cmd trash %{{
+    printf " Delete $f? (y/N): "
+    read ans
+    if [[ "$ans" == "y" ]]; then
+        trash-put "$f"
+        echo "$f deleted"
+    fi
 }}
