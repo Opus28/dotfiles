@@ -57,7 +57,9 @@ Xft.lcdfilter: lcddefault
 Xcursor.theme: Adwaita
 Xcursor.size:  0
 
-URxvt.font:                       xft:BitstreamVeraSansMono Nerd Font Mono:style=Roman:size=9:weight=200
+URxvt*font:                         xft:BitstreamVeraSansMono Nerd Font Mono:style=Roman:size=9:weight=200
+! URxvt*lineSpace:                    0
+URxvt*letterSpace:                  -1
 
 URxvt.depth:                      32
 ! URxvt.background:                 [100]#222D31
