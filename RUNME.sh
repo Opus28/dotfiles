@@ -7,5 +7,5 @@ print -P "Running bootstrap script\n"
 
 for file in $dotfiles; do
     echo "Stowing $file"
-    stow -t ~/ -d ~/dotfiles -nv -R $file
+    stow -t ~/ -d ~/dotfiles -nv -S $file
 done
