@@ -15,7 +15,7 @@ cmd open ${{
 }}
 
 cmd mkdir %{{
-    printf "Directory Name: "
+    printf " Directory Name: "
     read ans
     mkdir $ans
 }}
