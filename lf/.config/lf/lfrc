@@ -34,7 +34,7 @@ cmd rename %{{
 }}
 
 cmd trash %{{
-    printf " Delete $f? (y/N): "
+    printf " Move $f to trash? (y/N): "
     read ans
     if [[ "$ans" == "y" ]]; then
         trash-put "$f"
