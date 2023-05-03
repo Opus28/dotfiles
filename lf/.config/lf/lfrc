@@ -37,7 +37,7 @@ cmd trash %{{
     printf " Move $f to trash? (y/N): "
     read ans
     if [[ "$ans" == "y" ]]; then
-        trash-put "$f"
+        mv "$f" $HOME/.Trash
         echo "$f deleted"
     fi
 }}
