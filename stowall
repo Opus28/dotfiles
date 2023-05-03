@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+printf "Running bootstrap script\n"
+
+for folder in $PWD/*/; do
+    app=$(basename $folder)
+    printf "\nStow $app? (y/N) > "
+    read ans
+    if [[ "$ans" =~ ^(y|Y)(es)?$ ]] then
+        stow -v -R $app
+    else 
+        printf "$app will not be stowed.\n"
+    fi
+done
