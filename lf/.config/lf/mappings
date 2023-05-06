@@ -1,5 +1,5 @@
 # Mappings
 map b wal
-map <enter> rename
-map <c-n> mkdir
+map <c-r> rename
+map D mkdir
 map <backspace2> trash

@@ -36,8 +36,12 @@ cmd rename %{{
 cmd trash %{{
     printf " Move $f to trash? (y/N): "
     read ans
-    if [[ "$ans" == "y" ]]; then
-        mv "$f" $HOME/.Trash
-        echo "$f deleted"
+    if [[ "$ans" =~ ^(y|Y)(es)?$ ]]; then
+        mv "$f" "$HOME/.Trash"
+        if [[ "$?" == 0 ]]; then
+            echo "$f deleted"
+        else 
+            echo "$?"
+        fi
     fi
 }}
