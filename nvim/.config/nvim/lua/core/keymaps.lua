@@ -1,15 +1,23 @@
--- View
-vim.opt.number = true               --> show line numbers
-vim.opt.relativenumber = false      --> show relative line numbers
--- vim.opt.cursorline = true           --> highlight current line
--- vim.opt.hlsearch = false          --> don't highlight stuff
-vim.opt.showcmd = true              --> show last command at last line
+vim.g.mapleader = " "
 
--- Indentation and so such
-vim.opt.expandtab = true            --> tab inserts spaces
-vim.opt.tabstop = 4                 --> tab width is 4 spaces
-vim.opt.shiftwidth = 4              --> ">" & "<" shift by four
-vim.opt.shiftround = true           --> round shift indentation
+vim.keymap.set('n', '<leader>lf', vim.cmd.Ex)
+vim.keymap.set('n', '<leader>ma', vim.cmd.Mason)
 
--- Keymaps
 vim.keymap.set('n', '<esc>', ':noh<CR><esc>', {silent = true})
+
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '>-2<CR>gv=gv")
+
+vim.keymap.set('n', '<c-u>', '<c-u>zz')
+vim.keymap.set('n', '<c-d>', '<c-d>zz')
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
+
+vim.keymap.set('x', '<leader>p', '\"_dP')
+
+vim.keymap.set('n', '<leader>y', '\"+y')
+vim.keymap.set('v', '<leader>y', '\"+y')
+vim.keymap.set('n', '<leader>Y', '\"+Y')
+
+vim.keymap.set('n', '<leader>d', '\"_d')
+vim.keymap.set('v', '<leader>d', '\"_d')
