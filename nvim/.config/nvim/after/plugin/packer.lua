@@ -14,6 +14,7 @@ return require('packer').startup(function(use)
     use ('kdheepak/tabline.nvim')
     use ('lervag/vimtex')
     use ('catppuccin/nvim')
+    use ('L3MON4D3/LuaSnip')
 
 	-- LSPZero
 	use {

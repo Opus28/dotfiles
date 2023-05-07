@@ -4,10 +4,10 @@ lsp.set_preferences({
 })
 
 lsp.set_sign_icons({
-    error='✘',
-    warn='!',
-    hint='⚑',
-    info='I'
+    error='',
+    warn='',
+    hint='',
+    info=''
 })
 
 lsp.on_attach(function(client, bufnr)
