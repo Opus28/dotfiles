@@ -15,6 +15,7 @@ return require('packer').startup(function(use)
     use ('lervag/vimtex')
     use ('catppuccin/nvim')
     use ('L3MON4D3/LuaSnip')
+    use ('windwp/nvim-autopairs')
 
 	-- LSPZero
 	use {

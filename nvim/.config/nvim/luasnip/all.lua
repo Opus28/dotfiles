@@ -1,25 +1,17 @@
 local ls = require("luasnip")
 local s = ls.snippet
-local sn = ls.snippet_node
-local t = ls.text_node
+-- local sn = ls.snippet_node
+-- local t = ls.text_node
 local i = ls.insert_node
-local f = ls.function_node
-local d = ls.dynamic_node
-local fmt = require("luasnip.extras.fmt").fmt
+-- local f = ls.function_node
+-- local d = ls.dynamic_node
+-- local fmt = require("luasnip.extras.fmt").fmt
 local fmta = require("luasnip.extras.fmt").fmta
-local rep = require("luasnip.extras").rep
+-- local rep = require("luasnip.extras").rep
 
 return {
-  -- A snippet that expands the trigger "hi" into the string "Hello, world!".
-  require("luasnip").snippet(
-    { trig = "hi" },
-    { t("Hello, world!") }
-  ),
-
-  -- To return multiple snippets, use one `return` statement per snippet file
-  -- and return a table of Lua snippets.
-  require("luasnip").snippet(
-    { trig = "foo" },
-    { t("Another snippet.") }
-  ),
+    -- s( {trig="(", snippetType="autosnippet"}, fmta("(<>)<>", {i(1), i(0)})),
+    -- s( {trig="{", snippetType="autosnippet"}, fmta("{<>}<>", {i(1), i(0)})),
+    -- s( {trig="[", snippetType="autosnippet"}, fmta("[<>]<>", {i(1), i(0)})),
+    -- s( {trig="\n", snippetType="autosnippet"}, fmta("\n\t", {})),
 }
