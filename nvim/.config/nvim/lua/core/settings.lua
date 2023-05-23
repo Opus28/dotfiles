@@ -1,7 +1,7 @@
 -- View
 vim.opt.number = true               --> show line numbers
 vim.opt.relativenumber = false      --> show relative line numbers
-vim.opt.cursorline = false          --> highlight current line
+vim.opt.cursorline = true          --> highlight current line
 vim.opt.showcmd = true              --> show last command at last line
 
 vim.opt.hlsearch = true

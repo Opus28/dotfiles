@@ -7,6 +7,19 @@ set preview
 set icons true
 set nodrawbox 
 
+cmd newfile ${{
+    printf " New file: "
+    read ans
+    touch "$ans"
+    printf " Open $ans? (Y/n): "
+    read open
+    if [[ "$open" =~ ^((Y|y)(es)?)?$ ]]; then
+        nvim "$ans"
+    else 
+        echo "$ans" created
+    fi
+}}
+
 cmd open ${{
     case $(file --mime-type "$f" -bL) in
         text/*|application/json) $EDITOR "$f";;
@@ -17,7 +30,7 @@ cmd open ${{
 cmd mkdir %{{
     printf " Directory Name: "
     read ans
-    mkdir $ans
+    mkdir "$ans"
 }}
 
 cmd wal ${{

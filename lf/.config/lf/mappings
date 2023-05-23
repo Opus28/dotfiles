@@ -1,5 +1,6 @@
 # Mappings
 map b wal
-map <c-r> rename
+map R rename
 map D mkdir
+map <c-n> newfile
 map <backspace2> trash
