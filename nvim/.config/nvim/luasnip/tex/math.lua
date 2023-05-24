@@ -1,16 +1,24 @@
 local ls = require("luasnip")
 local s = ls.snippet
--- local sn = ls.snippet_node
+local sn = ls.snippet_node
 local t = ls.text_node
 local i = ls.insert_node
 -- local f = ls.function_node
--- local d = ls.dynamic_node
+local d = ls.dynamic_node
 -- local fmt = require("luasnip.extras.fmt").fmt
 local fmta = require("luasnip.extras.fmt").fmta
 -- local rep = require("luasnip.extras").rep
 
-local in_math = function()
+local function in_math()
     return vim.fn['vimtex#syntax#in_mathzone']() == 1
+end
+
+local function get_visual(args, parent)
+    if (#parent.snippet.env.LS_SELECT_RAW > 0) then
+        return sn(nil, i(1, parent.snippet.env.LS_SELECT_RAW))
+    else
+        return sn(nil, i(1))
+    end
 end
 
 return {
@@ -18,90 +26,104 @@ return {
     -- Inline Math zone
     s(
         {trig=";im", snippetType="autosnippet"},
-        fmta( "$ <> $<>", {i(1), i(0)} ),
+        fmta( "$<>$", {i(1, "insert math")} ),
         {condition = (not in_math)}
     ),
 
     -- Display Math zone
     s(
         {trig=";dm", snippetType="autosnippet"},
-        fmta( "\n\\[\n\t<>\n\\]<> ", {i(1), i(0)} ),
+        fmta( "\n\\[\n\t<>\n\\] ", {i(1, "insert math")} ),
         {condition = (not in_math)}
     ),
 
     -- Equation (Math) env
     s(
         {trig=";em", snippetType="autosnippet"},
-        fmta( "\n\\begin{equation}\n\t<>\n\\end{equation}<>", {i(1), i(0)} ),
+        fmta( "\n\\begin{equation}\n\t<>\n\\end{equation}", {i(1, "insert math")} ),
         {condition = (not in_math)}
+    ),
+
+    -- TeXt 
+    s(
+        {trig="tx", snippetType="autosnippet"},
+        fmta( "\\text{<>}", {d(1, get_visual)} ),
+        {condition = (in_math)}
+    ),
+
+    -- BoXed 
+    s(
+        {trig="bx", snippetType="autosnippet"},
+        fmta( "\\boxed{<>}", {d(1, get_visual)} ),
+        {condition = (in_math)}
     ),
 
     -- FRaction
     s(
         {trig="fr", snippetType="autosnippet", wordTrig = false},
-        fmta( "\\frac{<>}{<>}<>", {i(1), i(2), i(0)} ),
+        fmta( "\\frac{<>}{<>}", {i(1, "num"), i(2, "denom"), } ),
         {condition = in_math}
     ),
 
     -- square RooT
     s(
         {trig="rt",  snippetType="autosnippet"},
-        fmta( "\\sqrt{<>}<>", {i(1), i(0)} ),
+        fmta( "\\sqrt{<>}", {i(1)} ),
         {condition = in_math} ),
 
     -- exponent (Power Of)
     s(
         {trig="po", snippetType="autosnippet", wordTrig = false},
-        fmta( "^{<>}<>", {i(1), i(0)} ),
+        fmta( "^{<>}", {i(1, "2")} ),
         {condition = in_math}
     ),
 
     -- SUbscript
     s(
         {trig="su", snippetType="autosnippet", wordTrig = false},
-        fmta( "_{<>}<>", {i(1), i(0)} ),
+        fmta( "_{<>}", {i(1)} ),
         {condition = in_math}
     ),
 
     --COSine
     s(
         {trig="cos", snippetType="autosnippet", wordTrig = false},
-        fmta( "\\cos(<>)<>", {i(1), i(0)} ),
+        fmta( "\\cos(<>)", {i(1)} ),
         {condition = in_math}
     ),
 
     --SINe
     s(
         {trig="sin", snippetType="autosnippet", wordTrig = false},
-        fmta( "\\sin(<>)<>", {i(1), i(0)} ),
+        fmta( "\\sin(<>)", {i(1)} ),
         {condition = in_math}
     ),
 
     --TANgent
     s(
         {trig="tan", snippetType="autosnippet", wordTrig = false},
-        fmta( "\\tan(<>)<>", {i(1), i(0)} ),
+        fmta( "\\tan(<>)", {i(1)} ),
         {condition = in_math}
     ),
 
     --SECant
     s(
         {trig="sec", snippetType="autosnippet", wordTrig = false},
-        fmta( "\\sec(<>)<>", {i(1), i(0)} ),
+        fmta( "\\sec(<>)", {i(1)} ),
         {condition = in_math}
     ),
 
     --CoSeCant
     s(
         {trig="csc", snippetType="autosnippet", wordTrig = false},
-        fmta( "\\csc(<>)<>", {i(1), i(0)} ),
+        fmta( "\\csc(<>)", {i(1)} ),
         {condition = in_math}
     ),
 
     --COTangent
     s(
         {trig="cot", snippetType="autosnippet", wordTrig = false},
-        fmta( "\\cot(<>)<>", {i(1), i(0)} ),
+        fmta( "\\cot(<>)", {i(1)} ),
         {condition = in_math}
     ),
 
@@ -114,20 +136,18 @@ return {
     -- large operators
     s( {trig="nt",  snippetType="autosnippet"}, {t("\\int")}, {condition = in_math} ),
     s( {trig="ad",  snippetType="autosnippet"}, {t("\\sum")}, {condition = in_math} ),
-    s( {trig="li",  snippetType="autosnippet"}, {t("\\lim")}, {condition = in_math} ),
+    s( {trig="lim",  snippetType="autosnippet"}, {t("\\lim")}, {condition = in_math} ),
     s( {trig="pr",  snippetType="autosnippet"}, {t("\\prod")}, {condition = in_math} ),
 
     -- relational operators
     s( {trig="in",  snippetType="autosnippet"}, {t("\\in")}, {condition = in_math} ),
-    s( {trig="le",  snippetType="autosnippet"}, {t("\\le")}, {condition = in_math} ),
-    s( {trig="ge",  snippetType="autosnippet"}, {t("\\ge")}, {condition = in_math} ),
+    s( {trig="to",  snippetType="autosnippet"}, {t("\\to")}, {condition = in_math} ),
 
     -- binary operators
-    s( {trig="to",  snippetType="autosnippet"}, {t("\\to")}, {condition = in_math} ),
-    s( {trig="ti",  snippetType="autosnippet"}, {t("\\times")}, {condition = in_math} ),
-    s( {trig="dv",  snippetType="autosnippet"}, {t("\\div")}, {condition = in_math} ),
-    s( {trig="pm",  snippetType="autosnippet"}, {t("\\pm")}, {condition = in_math} ),
-    s( {trig="mp",  snippetType="autosnippet"}, {t("\\mp")}, {condition = in_math} ),
+    s( {trig="tim",  snippetType="autosnippet"}, {t("\\times")}, {condition = in_math} ),
+    s( {trig="div",  snippetType="autosnippet"}, {t("\\div")}, {condition = in_math} ),
+    -- s( {trig="pm",  snippetType="autosnippet"}, {t("\\pm")}, {condition = in_math} ),
+    -- s( {trig="mp",  snippetType="autosnippet"}, {t("\\mp")}, {condition = in_math} ),
 
     -- Greek Alphabet (lowercase)
     s( {trig=";a",  snippetType="autosnippet"}, {t("\\alpha")}, {condition = in_math} ),
