@@ -1,6 +1,6 @@
 local ls = require("luasnip")
 local s = ls.snippet
-local sn = ls.snippet_node
+-- local sn = ls.snippet_node
 local t = ls.text_node
 local i = ls.insert_node
 -- local f = ls.function_node
@@ -9,38 +9,30 @@ local d = ls.dynamic_node
 local fmta = require("luasnip.extras.fmt").fmta
 -- local rep = require("luasnip.extras").rep
 
-local function in_math()
-    return vim.fn['vimtex#syntax#in_mathzone']() == 1
-end
-
-local function get_visual(args, parent)
-    if (#parent.snippet.env.LS_SELECT_RAW > 0) then
-        return sn(nil, i(1, parent.snippet.env.LS_SELECT_RAW))
-    else
-        return sn(nil, i(1))
-    end
-end
+local helpers = require("luasnip-helpers")
+local in_math = helpers.in_math
+local get_visual = helpers.get_visual
 
 return {
 
     -- Inline Math zone
     s(
         {trig=";im", snippetType="autosnippet"},
-        fmta( "$<>$", {i(1, "insert math")} ),
+        fmta( "$<>$", {d(1, get_visual)} ),
         {condition = (not in_math)}
     ),
 
     -- Display Math zone
     s(
         {trig=";dm", snippetType="autosnippet"},
-        fmta( "\n\\[\n\t<>\n\\] ", {i(1, "insert math")} ),
+        fmta( "\n\\[\n\t<>\n\\] ", {d(1, get_visual)} ),
         {condition = (not in_math)}
     ),
 
     -- Equation (Math) env
     s(
         {trig=";em", snippetType="autosnippet"},
-        fmta( "\n\\begin{equation}\n\t<>\n\\end{equation}", {i(1, "insert math")} ),
+        fmta( "\n\\begin{equation}\n\t<>\n\\end{equation}", {d(1, get_visual)} ),
         {condition = (not in_math)}
     ),
 
