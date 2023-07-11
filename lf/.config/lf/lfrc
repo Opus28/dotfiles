@@ -42,7 +42,7 @@ cmd wal ${{
 cmd rename %{{
     printf " New name: "
     read name
-    mv "$f" $name
+    mv "$f" "$name"
     echo " $f renamed to $name"
 }}
 

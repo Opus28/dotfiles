@@ -9,6 +9,11 @@ end
 
 cmp.setup({
 
+    sources = {
+        {name = 'nvim_lsp'},
+        {name = 'luasnip'},
+    },
+
     mapping = {
 
         ["<cr>"] = cmp.mapping({

@@ -59,65 +59,73 @@ return {
 
     -- square RooT
     s(
-        {trig="rt",  snippetType="autosnippet"},
-        fmta( "\\sqrt{<>}", {i(1)} ),
+        {trig="rt",  snippetType="autosnippet", wordTrig = false},
+        fmta( "\\sqrt{<>}", {d(1, get_visual)} ),
         {condition = in_math} ),
 
     -- exponent (Power Of)
     s(
         {trig="po", snippetType="autosnippet", wordTrig = false},
-        fmta( "^{<>}", {i(1, "2")} ),
+        fmta( "^{<>}", {d(1, get_visual)} ),
         {condition = in_math}
     ),
 
     -- SUbscript
     s(
         {trig="su", snippetType="autosnippet", wordTrig = false},
-        fmta( "_{<>}", {i(1)} ),
+        fmta( "_{<>}", {d(1, get_visual)} ),
         {condition = in_math}
     ),
 
     --COSine
     s(
         {trig="cos", snippetType="autosnippet", wordTrig = false},
-        fmta( "\\cos(<>)", {i(1)} ),
+        fmta( "\\cos(<>)", {d(1, get_visual)} ),
         {condition = in_math}
     ),
 
     --SINe
     s(
         {trig="sin", snippetType="autosnippet", wordTrig = false},
-        fmta( "\\sin(<>)", {i(1)} ),
+        fmta( "\\sin(<>)", {d(1, get_visual)} ),
         {condition = in_math}
     ),
 
     --TANgent
     s(
         {trig="tan", snippetType="autosnippet", wordTrig = false},
-        fmta( "\\tan(<>)", {i(1)} ),
+        fmta( "\\tan(<>)", {d(1, get_visual)} ),
         {condition = in_math}
     ),
 
     --SECant
     s(
         {trig="sec", snippetType="autosnippet", wordTrig = false},
-        fmta( "\\sec(<>)", {i(1)} ),
+        fmta( "\\sec(<>)", {d(1, get_visual)} ),
         {condition = in_math}
     ),
 
     --CoSeCant
     s(
         {trig="csc", snippetType="autosnippet", wordTrig = false},
-        fmta( "\\csc(<>)", {i(1)} ),
+        fmta( "\\csc(<>)", {d(1, get_visual)} ),
         {condition = in_math}
     ),
 
     --COTangent
     s(
         {trig="cot", snippetType="autosnippet", wordTrig = false},
-        fmta( "\\cot(<>)", {i(1)} ),
+        fmta( "\\cot(<>)", {d(1, get_visual)} ),
         {condition = in_math}
     ),
+
+    -- transforms
+    s(
+        {trig="op",  snippetType="autosnippet"},
+        fmta( "\\mathcal{<>}", {d(1, get_visual)} ),
+        {condition = in_math}
+    ),
+
 
     --iNFinity
     s( {trig="nf",  snippetType="autosnippet"}, {t("\\infty")}, {condition = in_math} ),
@@ -132,7 +140,6 @@ return {
     s( {trig="pr",  snippetType="autosnippet"}, {t("\\prod")}, {condition = in_math} ),
 
     -- relational operators
-    s( {trig="in",  snippetType="autosnippet"}, {t("\\in")}, {condition = in_math} ),
     s( {trig="to",  snippetType="autosnippet"}, {t("\\to")}, {condition = in_math} ),
 
     -- binary operators
@@ -150,7 +157,7 @@ return {
     s( {trig=";ve", snippetType="autosnippet"}, {t("\\varepsilon")}, {condition = in_math} ),
     s( {trig=";z",  snippetType="autosnippet"}, {t("\\zeta")}, {condition = in_math} ),
     s( {trig=";h",  snippetType="autosnippet"}, {t("\\eta")}, {condition = in_math} ),
-    s( {trig=";th", snippetType="autosnippet"}, {t("\\theta")}, {condition = in_math} ),
+    s( {trig=";y",  snippetType="autosnippet"}, {t("\\theta")}, {condition = in_math} ),
     s( {trig=";i",  snippetType="autosnippet"}, {t("\\iota")}, {condition = in_math} ),
     s( {trig=";k",  snippetType="autosnippet"}, {t("\\kappa")}, {condition = in_math} ),
     s( {trig=";l",  snippetType="autosnippet"}, {t("\\lambda")}, {condition = in_math} ),
@@ -160,7 +167,7 @@ return {
     s( {trig=";p",  snippetType="autosnippet"}, {t("\\pi")}, {condition = in_math} ),
     s( {trig=";r",  snippetType="autosnippet"}, {t("\\rho")}, {condition = in_math} ),
     s( {trig=";s",  snippetType="autosnippet"}, {t("\\sigma")}, {condition = in_math} ),
-    s( {trig=";ta", snippetType="autosnippet"}, {t("\\tau")}, {condition = in_math} ),
+    s( {trig=";t",  snippetType="autosnippet"}, {t("\\tau")}, {condition = in_math} ),
     s( {trig=";u",  snippetType="autosnippet"}, {t("\\upsilon")}, {condition = in_math} ),
     s( {trig=";f",  snippetType="autosnippet"}, {t("\\phi")}, {condition = in_math} ),
     s( {trig=";vf", snippetType="autosnippet"}, {t("\\varphi")}, {condition = in_math} ),
@@ -171,7 +178,7 @@ return {
     -- Greek Alphabet (uppercase)
     s( {trig=";G",  snippetType="autosnippet"}, {t("\\Gamma")}, {condition = in_math} ),
     s( {trig=";D",  snippetType="autosnippet"}, {t("\\Delta")}, {condition = in_math} ),
-    s( {trig=";Th", snippetType="autosnippet"}, {t("\\Theta")}, {condition = in_math} ),
+    s( {trig=";Y",  snippetType="autosnippet"}, {t("\\Theta")}, {condition = in_math} ),
     s( {trig=";L",  snippetType="autosnippet"}, {t("\\Lambda")}, {condition = in_math} ),
     s( {trig=";X",  snippetType="autosnippet"}, {t("\\Xi")}, {condition = in_math} ),
     s( {trig=";P",  snippetType="autosnippet"}, {t("\\Pi")}, {condition = in_math} ),
