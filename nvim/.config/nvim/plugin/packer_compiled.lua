@@ -154,6 +154,16 @@ _G.packer_plugins = {
     path = "/Users/leon/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
   },
+  ["vim-kitty"] = {
+    loaded = true,
+    path = "/Users/leon/.local/share/nvim/site/pack/packer/start/vim-kitty",
+    url = "https://github.com/fladson/vim-kitty"
+  },
+  ["vim-processing"] = {
+    loaded = true,
+    path = "/Users/leon/.local/share/nvim/site/pack/packer/start/vim-processing",
+    url = "https://github.com/sophacles/vim-processing"
+  },
   vimtex = {
     loaded = true,
     path = "/Users/leon/.local/share/nvim/site/pack/packer/start/vimtex",

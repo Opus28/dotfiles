@@ -16,6 +16,9 @@ return require('packer').startup(function(use)
     use ('catppuccin/nvim')
     use ('L3MON4D3/LuaSnip')
     use ('windwp/nvim-autopairs')
+    use ('fladson/vim-kitty')
+
+    use ('sophacles/vim-processing')
 
 	-- LSPZero
     use {

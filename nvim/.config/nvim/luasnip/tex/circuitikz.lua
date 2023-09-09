@@ -16,7 +16,9 @@ local in_math = helpers.in_math
 return {
     s(
         {trig=":cir", snippetType="autosnippet", wordTrig=false},
-        fmta( "\\begin{circuitikz}\n\t\\draw (0,0)\n\t\tto[<>]<>\n\t\t;\n\\end{circuitikz}", {i(1), i(2)} ),
+        fmta(
+        "\\begin{figure}[!ht]\n\\centering\n\\begin{circuitikz}\n\t\\draw (0,0)\n\t\tto[<>]<>\n\t\t;\n\\end{circuitikz}\n\\caption{<>}\n\\label{<>}\n\\end{figure}",
+        {i(1), i(2), i(3), i(4)} ),
         {condition = not in_math}
     ),
 }

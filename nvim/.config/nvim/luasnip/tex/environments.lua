@@ -21,8 +21,8 @@ return {
     s(
         {trig=":fig", snippetType="autosnippet"},
         fmta(
-            "\\begin{figure}[!ht]\n\\centering\n\\includegraphics[width=<>]{<>}\n\\caption{<>}\n\\end{figure}",
-            {i(1, "\\textwidth"), i(2), i(3)}
+            "\\begin{figure}[!ht]\n\\centering\n\\includegraphics[width=<>]{<>}\n\\caption{<>}\n\\label{<>}\n\\end{figure}",
+            {i(1, "\\textwidth"), i(2), i(3), i(4)}
         )
     ),
 

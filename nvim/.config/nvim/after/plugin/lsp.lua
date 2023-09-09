@@ -15,6 +15,17 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 -- (Optional) Configure lua language server for neovim
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+local lspconfig = require('lspconfig')
+
+lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+lspconfig.clangd.setup({})
+lspconfig.jdtls.setup({
+    root_dir = function ()
+        return vim.fs.dirname(vim.fs.find({'src'}, {upward=true})[1]) .. "/"
+    end
+})
+-- lspconfig.r_language_server.setup({})
+
+vim.lsp.set_log_level("debug")
 
 lsp.setup()

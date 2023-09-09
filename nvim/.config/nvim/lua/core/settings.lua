@@ -3,7 +3,7 @@ vim.opt.number = true               --> show line numbers
 vim.opt.relativenumber = false      --> show relative line numbers
 vim.opt.cursorline = true           --> highlight current line
 vim.opt.showcmd = true              --> show last command at last line
-vim.opt.colorcolumn = "86"          --> highlight 86th column
+-- vim.opt.colorcolumn = "86"          --> highlight 86th column
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
