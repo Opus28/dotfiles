@@ -7,6 +7,7 @@ set preview
 set icons true
 set nodrawbox 
 
+# doesn't work with % for some reason??
 cmd newfile ${{
     printf " New file: "
     read ans
@@ -20,7 +21,7 @@ cmd newfile ${{
     fi
 }}
 
-cmd open ${{
+cmd open %{{
     case $(file --mime-type "$f" -bL) in
         text/*|application/json) $EDITOR "$f";;
         *) xdg-open "$f" ;;
@@ -33,14 +34,14 @@ cmd mkdir %{{
     mkdir "$ans"
 }}
 
-cmd wal ${{
+cmd wal %{{
     wal -i "$f"
 #     feh --bg-fill "$f"
     pywalfox update
 }}
 
 cmd rename %{{
-    printf " New name: "
+    printf " Move [$f] to [$f]"
     read name
     mv "$f" "$name"
     echo " $f renamed to $name"

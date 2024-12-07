@@ -1,23 +1,19 @@
 vim.g.mapleader = " "
 
-vim.keymap.set('n', '<leader>lf', vim.cmd.Ex)
-vim.keymap.set('n', '<leader>ma', vim.cmd.Mason)
+-- Toggle light/dark mode
+vim.keymap.set('n', '<leader>ct', function ()
+    vim.o.bg = (vim.o.bg == "dark" and "light" or "dark")
+end)
 
+-- Open terminal 
+vim.keymap.set('n', '<leader>tt', ':botright 16split|term<CR>', {silent = true})
+
+-- Clear highlighting with Esc
 vim.keymap.set('n', '<esc>', ':noh<CR><esc>', {silent = true})
 
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '>-2<CR>gv=gv")
+-- Windows
+vim.keymap.set('n', '<c-w><c-v>', ':belowright vertical split<CR>', {silent = true}) -- manual splits go right
 
-vim.keymap.set('n', '<c-u>', '<c-u>zz')
-vim.keymap.set('n', '<c-d>', '<c-d>zz')
-vim.keymap.set('n', 'n', 'nzzzv')
-vim.keymap.set('n', 'N', 'Nzzzv')
-
-vim.keymap.set('x', '<leader>p', '\"_dP')
-
-vim.keymap.set('n', '<leader>y', '\"+y')
-vim.keymap.set('v', '<leader>y', '\"+y')
-vim.keymap.set('n', '<leader>Y', '\"+Y')
-
-vim.keymap.set('n', '<leader>d', '\"_d')
-vim.keymap.set('v', '<leader>d', '\"_d')
+-- Refresh settings
+-- vim.keymap.set('n', '<leader>r', ':source ~/.dotfiles/nvim/.config/nvim/lua/core/keymaps.lua' + ':source <CR>', { silent = true })
+vim.keymap.set('n', '<leader>r', ':source ~/.dotfiles/nvim/.config/nvim/init.lua<CR>', { silent = true })

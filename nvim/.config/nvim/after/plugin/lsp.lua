@@ -1,31 +1,39 @@
-local lsp = require('lsp-zero').preset({"recommended"})
+local lsp_zero = require('lsp-zero')
+lsp_zero.extend_lspconfig()
 
-lsp.set_preferences({
+lsp_zero.set_sign_icons({
+    error = '',
+    warn = '',
+    hint = '',
+    info = ''
 })
 
-lsp.set_sign_icons({
-    error='',
-    warn='',
-    hint='',
-    info=''
-})
-
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
+lsp_zero.on_attach(function(client, bufnr)
+  -- see :help lsp-zero-keybindings
+  -- to learn the available actions
+  lsp_zero.default_keymaps({buffer = bufnr})
 end)
 
--- (Optional) Configure lua language server for neovim
-local lspconfig = require('lspconfig')
+-- see :help lsp-zero-guide:integrate-with-mason-nvim
+-- to learn how to use mason.nvim with lsp-zero
+require('mason').setup({})
+-- require('mason-lspconfig').setup({
+  -- handlers = {
+    -- lsp_zero.default_setup,
+  -- }
+-- })
 
-lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
-lspconfig.clangd.setup({})
-lspconfig.jdtls.setup({
-    root_dir = function ()
-        return vim.fs.dirname(vim.fs.find({'src'}, {upward=true})[1]) .. "/"
-    end
-})
--- lspconfig.r_language_server.setup({})
+local lsp = require('lspconfig')
+
+lsp.lua_ls.setup {}
+lsp.pylsp.setup {}
+lsp.rust_analyzer.setup {}
+lsp.julials.setup {}
+lsp.clangd.setup {filetypes={"c", "h"}}
+lsp.jdtls.setup {}
+lsp.quick_lint_js.setup {}
+lsp.ts_ls.setup {}
+lsp.html.setup {}
+lsp.sqlls.setup {}
 
 vim.lsp.set_log_level("debug")
-
-lsp.setup()
